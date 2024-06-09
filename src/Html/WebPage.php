@@ -6,7 +6,6 @@ namespace Html;
 
 class WebPage
 {
-
     /**
      * @var string
      * Donnée au format Html entre <head> et </head>
