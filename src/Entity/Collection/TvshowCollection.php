@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Entity\Collection;
 
 use Database\MyPdo;
+use Entity\Tvshow;
 use PDO;
-use src\Entity\Tvshow;
 
 class TvshowCollection
 {
@@ -14,7 +14,7 @@ class TvshowCollection
     {
         $stmt = MyPdo::getInstance()->prepare(<<<SQL
         SELECT *
-        FROM artist
+        FROM tvshow
         ORDER BY name
 SQL);
         $stmt->execute();
