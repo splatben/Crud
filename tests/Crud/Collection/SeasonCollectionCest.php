@@ -29,7 +29,7 @@ class SeasonCollectionCest
         }
     }
 
-    public function findByIdThrowsExceptionIfPosterDoesNotExist(CrudTester $I): void
+    public function findByIdThrowsExceptionIfTvShowDoesNotExist(CrudTester $I): void
     {
         $I->expectThrowable(EntityNotFoundException::class, function () {
             SeasonCollection::findByTvShowId(PHP_INT_MAX);

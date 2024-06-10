@@ -9,7 +9,7 @@ use Tests\CrudTester;
 
 class EpisodeCollectionCest
 {
-    public function findByTvShowId(CrudTester $I)
+    public function findBySeasonId(CrudTester $I)
     {
         $expectedEps = [
             ['id' => 3869,'seasonId' => 208,'name' => 'La Grande Aventure de Bender','episodeNumber' => 1],
@@ -31,7 +31,7 @@ class EpisodeCollectionCest
         }
     }
 
-    public function findByIdThrowsExceptionIfPosterDoesNotExist(CrudTester $I): void
+    public function findByIdThrowsExceptionIfSeasonDoesNotExist(CrudTester $I): void
     {
         $I->expectThrowable(EntityNotFoundException::class, function () {
             EpisodeCollection::findBySeasonId(PHP_INT_MAX);
