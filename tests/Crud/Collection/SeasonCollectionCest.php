@@ -3,6 +3,8 @@
 namespace Tests\Collection;
 
 use Entity\Collection\SeasonCollection;
+use Entity\Exception\EntityNotFoundException;
+use Entity\Poster;
 use Entity\Season;
 use Tests\CrudTester;
 
@@ -25,5 +27,12 @@ class SeasonCollectionCest
             $I->assertEquals($expectedSeason['seasonnumber'], $season->getSeasonNumber());
             $I->assertEquals($expectedSeason['posterid'], $season->getPosterId());
         }
+    }
+
+    public function findByIdThrowsExceptionIfPosterDoesNotExist(CrudTester $I): void
+    {
+        $I->expectThrowable(EntityNotFoundException::class, function () {
+            SeasonCollection::findByTvShowId(PHP_INT_MAX);
+        });
     }
 }
