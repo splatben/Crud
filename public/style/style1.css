@@ -1,0 +1,30 @@
+html,body {
+    margin : 0;
+    height: 100%;
+    background: #a6a6a6;
+
+}
+
+body{
+    display : flex;
+    flex-flow: column nowrap;
+    margin-right: auto;
+    margin-left:auto;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    height : 80%;
+    overflow: scroll;
+    scrollbar-width: auto;
+}
+.footer,.header{
+    flex-grow: 1;
+}
+.footer,.header,.content,.menu{
+    border : 2px solid rgb(222,222,222);
+    margin : 8px;
+    text-align: center;
+    background: white;
+}
