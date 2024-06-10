@@ -1,6 +1,9 @@
 <?php
+
 namespace Tests;
+
 use Tests\CrudTester;
+
 class TvshowCest
 {
     public function _before(CrudTester $I)
