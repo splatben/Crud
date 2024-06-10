@@ -3,14 +3,14 @@
 namespace Tests;
 
 use Entity\Exception\EntityNotFoundException;
-use src\Entity\Tvshow;
+use Entity\Tvshow;
 use Tests\CrudTester;
 
 class TvshowCest
 {
     public function findById(CrudTester $I)
     {
-        $show = Tvshow::findById(4);
+        $show = Tvshow::findById(3);
         $I->assertSame(3, $show->getId());
         $I->assertSame('Friends', $show->getName());
         $show = Tvshow::findById(25);

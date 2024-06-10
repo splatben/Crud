@@ -1,2 +1,0 @@
-tests/Crud/TvshowCest.php:findByIdThrowsExceptionIfTvshowDoesNotExist
-tests/Crud/TvshowCest.php:findById
