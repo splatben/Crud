@@ -20,6 +20,9 @@ HTML);
 $tvshows = TvshowCollection::findAll();
 foreach ($tvshows as $show) {
     $source = "img/default.png";
+    if ($show->getPosterId() !== null) {
+        $source = "poster.php?posterId={$show->getPosterId()}";
+    }
 
     $webPage->appendContent(<<<HTML
     <div class="show">
@@ -32,6 +35,7 @@ foreach ($tvshows as $show) {
 
 
 HTML);
+
 }
 
 $webPage->appendContent('</div>');
