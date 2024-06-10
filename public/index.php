@@ -9,6 +9,8 @@ use Entity\Tvshow;
 
 $webPage = new AppWebPage();
 $webPage->setTitle("Séries TV");
+$webPage->appendCssUrl("style/index.css");
+
 
 $webPage->appendContent(<<<HTML
 <div class="list__show">
@@ -23,8 +25,8 @@ foreach ($tvshows as $show) {
     <div class="show">
         <img src="$source" alt="poster">
         <div class="show__info">
-            <a>{$show->getName()}</a>
-            <a>{$show->getOverview()}</a>
+            <a class="show__name">{$show->getName()}</a>
+            <a class="show__desc">{$show->getOverview()}</a>
         </div>
     </div>
 
