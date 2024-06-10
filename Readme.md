@@ -24,6 +24,12 @@ On preferera utilise les commandes faite avec composer pour gagner du temps:
 ```composer "test:cs"``` Pour voir quel fichier comporte des problèmes  
 ```composer "fix:cs"``` Pour fixer les problème  
 
+### Tests
+
+Les Tests se font avec codeception et sont dans des commande composer :
+```composer test:<suited de test>``` Pour faire une suite de test en particulier
+```composer test:codeception``` Pour l'ensemble des tests 
+```composer test```Pour l'ensemble des tests & les test de php-fixer pour la correspondance a la norme PSR-12.
 ### Installation dépendance
  
 Lors d'un clonage du git utiliser la commande ```composer install``` pour l'installation des paquets nécéssaire au fonctionnement du projet dans /vendor/.
@@ -31,8 +37,7 @@ Cela metre egalement a jour l'auto chargement sinon utiliser ```composer dump-au
 Pour l'Integration de php-Fixer dans phpStorm se fait dans ___Settings(CTRL+ALT+S)\Php\Quality Tools\Php cs fixer - Rulesets : custom + chemin vers .php-cs-Fixer.php + mettre sur ON___
 et ne pas oublier de metre dans ___Settings\Php\Quality Tools de metre php-cs-fixer dans External formatter___.
 
-### En cas d'erreur 
-
+### En cas d'erreur
 #### erreur "Failed to listen on localhost:8000 (reason : address already in use)" -> linux only
 Taper la commande ```ps -ef``` pour afficher les processus et cherchez le processus **php -d auto_prepend_files= __chemin d'acces de votre projet/vendor/auload.php__ -d display_errors -S localhost:8000 -t public/**
 ou **bash bin/run-server.sh** regarder le pid et utiliser ```kill -9 <pid>``` (arreter l'un des deux processus arretera l'autre).
