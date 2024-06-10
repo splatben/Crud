@@ -16,7 +16,7 @@ class AppWebPage extends WebPage
     public function __construct(string $title = "")
     {
         parent::__construct($title);
-        parent::appendCssUrl("css/style1.css");
+        parent::appendCssUrl("style/style1.css");
     }
     public function toHtml(): string
     {
