@@ -2,16 +2,26 @@
 
 namespace Tests;
 
+use Entity\Exception\EntityNotFoundException;
+use src\Entity\Tvshow;
 use Tests\CrudTester;
 
 class TvshowCest
 {
-    public function _before(CrudTester $I)
+    public function findById(CrudTester $I)
     {
+        $show = Tvshow::findById(4);
+        $I->assertSame(3, $show->getId());
+        $I->assertSame('Friends', $show->getName());
+        $show = Tvshow::findById(25);
+        $I->assertSame(25, $show->getId());
+        $I->assertSame('Futurama', $show->getOriginalName());
     }
 
-    // tests
-    public function tryToTest(CrudTester $I)
+    public function findByIdThrowsExceptionIfTvshowDoesNotExist(CrudTester $I)
     {
+        $I->expectThrowable(EntityNotFoundException::class, function () {
+            Tvshow::findById(PHP_INT_MAX);
+        });
     }
 }
