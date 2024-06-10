@@ -1,0 +1,38 @@
+.list__show {
+    display: flex;
+    flex-direction: column;
+}
+
+.show {
+    display: flex;
+
+    padding: 5px;
+}
+
+.show:nth-child(odd){
+    flex-direction: row;
+}
+
+.show:nth-child(even){
+    flex-direction: row-reverse;
+}
+
+.show__info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 10px;
+    align-items: flex-start;
+}
+
+
+.show__name {
+    font-weight: bold;
+}
+
+.show__desc {
+    text-align: start;
+}
+
+
+}
