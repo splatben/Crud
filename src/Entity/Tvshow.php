@@ -63,4 +63,13 @@ SQL);
         }
     }
 
+    public function getPoster(): ?Poster
+    {
+        $poster = null;
+        if (isset($this->posterId)) {
+            $poster = Poster::findById($this->posterId);
+        }
+        return $poster;
+    }
+
 }
