@@ -1,3 +1,5 @@
 /vendor/
 .idea
 .mypdo.ini
+/tests/tv-show-lite.sqlite
+/tests/tv-show-lite.sqlite_snapshot
