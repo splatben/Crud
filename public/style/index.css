@@ -1,12 +1,14 @@
 .list__show {
     display: flex;
     flex-direction: column;
+    row-gap: 10px;
+    padding: 10px;
 }
 
 .show {
     display: flex;
+    height: 231px;
 
-    padding: 5px;
 }
 
 .show:nth-child(odd){
@@ -23,6 +25,9 @@
     row-gap: 20px;
     padding: 10px;
     align-items: flex-start;
+    border: 2px solid black;
+    justify-content: center;
+    width: 100%;
 }
 
 
@@ -32,4 +37,5 @@
 
 .show__desc {
     text-align: start;
+    overflow: scroll;
 }
