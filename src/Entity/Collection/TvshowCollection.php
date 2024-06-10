@@ -12,12 +12,11 @@ class TvshowCollection
 {
     public static function findAll(): array
     {
-        $stmt = MyPdo::getInstance()->prepare(
-            <<<SQL
+        $stmt = MyPdo::getInstance()->prepare(<<<SQL
         SELECT *
         FROM tvshow
-SQL
-        );
+        ORDER BY name
+SQL);
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_CLASS, Tvshow::class);
