@@ -2,7 +2,6 @@ html,body {
     margin : 0;
     height: 100%;
     background: #a6a6a6;
-
 }
 
 body{
@@ -19,12 +18,40 @@ body{
     overflow: scroll;
     scrollbar-width: auto;
 }
-.footer,.header{
-    flex-grow: 1;
-}
 .footer,.header,.content,.menu{
     border : 2px solid rgb(222,222,222);
     margin : 8px;
     text-align: center;
     background: white;
+}
+.footer,.menu{
+    margin-top : 0;
+}
+.menu{
+    margin-bottom:0;
+}
+img {
+    align-self: center;
+    height : 231px;
+    width: 154px;
+}
+@media (max-width: 400px){
+    h1{
+        font-size: 20px;
+    }
+    .footer,.header,.content,.menu{
+        margin : 4px;
+    }
+    .footer,.menu{
+        margin-top : 0;
+    }
+    .menu{
+        margin-bottom:0;
+    }
+    .content{
+        font-size: 15px;
+    }
+    img {
+        padding: 5px;
+    }
 }
