@@ -44,4 +44,27 @@ class TvshowCest
         $I->assertSame('Hunters', $show->getName());
     }
 
+    public function update(CrudTester $I): void
+    {
+        $show = Tvshow::findById(57);
+        $show->setName('name test');
+        $show->setOriginalName('OG name test');
+        $show->setHomepage('HP test');
+        $show->setOverview('OV test');
+        $show->update();
+        $I->canSeeNumRecords(1, 'tvshow', [
+            'id' => 57,
+            'name' => 'name test',
+            'originalName' => 'OG name test',
+            'homepage' => 'HP test',
+            'overview' => 'OV test'
+        ]);
+        $I->assertSame(57,$show->getId());
+        $I->assertSame('name test',$show->getName());
+        $I->assertSame('OG name test',$show->getOriginalName());
+        $I->assertSame('HP test',$show->getHomepage());
+        $I->assertSame('OV test',$show->getOverview());
+
+    }
+
 }
