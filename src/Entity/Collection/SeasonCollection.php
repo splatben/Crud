@@ -20,10 +20,9 @@ Order by seasonnumber;
 SQL
         );
         $req->execute([':id' => $id]);
-        if (empty($seasons = $req->fetchAll(PDO::FETCH_CLASS, Season::class))) {
-            throw new EntityNotFoundException();
-        } else {
-            return $seasons;
-        }
+        $seasons = $req->fetchAll(PDO::FETCH_CLASS, Season::class);
+
+        return $seasons;
+
     }
 }
