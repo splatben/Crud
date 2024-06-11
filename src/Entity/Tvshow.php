@@ -132,6 +132,23 @@ SQL);
         return $this;
     }
 
+    public function create(string $name, string $ogName, string $homepage, string $overview, ?int $id = null): Tvshow
+    {
+        $show = new Tvshow();
+        $show->setName($name);
+        $show->setOriginalName($ogName);
+        $show->setHomepage($homepage);
+        $show->setOverview($overview);
+        $show->setId($id);
+        $show->posterId = null;
+        return $show;
+
+    }
+
+    private function __construct()
+    {
+
+    }
 
 
 }
