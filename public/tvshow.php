@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Entity\Exception\EntityNotFoundException;
 use Entity\Tvshow;
+use Entity\Season;
 use Html\AppWebPage;
 
 $tvshowId = null;
@@ -31,12 +32,30 @@ if ($show->getPosterId() !== null) {
 
 $webPage->appendContent(<<<HTML
     <div class="show">
-        <img src="$sourcePosterShow">
+        <img src="$sourcePosterShow" alt="Poster show">
         <div class="show__info">
-            <a class="show_titre">{$show->getName()}</a>
-            <a class="show_titre">{$show->getName()}</a>
-
+            <a class="show__title">{$show->getName()}</a>
+            <a class="show__title">{$show->getOriginalName()}</a>
+            <a class="show__desc">{$show->getOverview()}</a>
         </div>
     </div>
+    <div class="list__season">
 
 HTML);
+
+$seasons = $show->getSeasons();
+
+foreach ($seasons as $season) {
+    $sourcePosterSeason = "img/default.png";
+    $webPage->appendContent(<<<HTML
+        <div class="season">
+            <img src="$sourcePosterSeason" alt="Poster season">
+            <a class="season__title">{$season->getName()}</a>
+        </div>
+
+HTML);
+}
+$webPage->appendContent("</div>");
+
+
+echo $webPage->toHtml();
