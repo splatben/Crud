@@ -4,6 +4,7 @@ namespace Entity;
 
 use Database\MyPdo;
 use Entity\Exception\EntityNotFoundException;
+use PDO;
 
 class Season
 {
@@ -44,7 +45,7 @@ class Season
     {
         $req = MyPdo::getInstance()->prepare("SELECT * FROM season WHERE id = :id");
         $req->execute(['id' => $id]);
-        $req->setFetchMode(MyPdo::FETCH_OBJ);
+        $req->setFetchMode(PDO::FETCH_CLASS, Season::class);
         if(($res = $req->fetch()) === false) {
             throw new EntityNotFoundException();
         } else {
