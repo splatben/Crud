@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Entity;
 
 use Database\MyPdo;
+use Entity\Collection\SeasonCollection;
 use Entity\Exception\EntityNotFoundException;
 use PDO;
 
@@ -70,6 +71,11 @@ SQL);
             $poster = Poster::findById($this->posterId);
         }
         return $poster;
+    }
+
+    public function getSeasons(): array
+    {
+        return SeasonCollection::findByTvShowId($this->id);
     }
 
 }
