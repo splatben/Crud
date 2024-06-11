@@ -4,12 +4,11 @@
     row-gap: 10px;
     padding: 10px;
 }
-
 .show {
     display: flex;
     height: 231px;
-
 }
+
 .show:hover {
     background-color: #cccccc;
 }
@@ -28,7 +27,7 @@
     row-gap: 20px;
     padding: 10px;
     align-items: flex-start;
-    border: 2px solid black;
+    border: 2px solid #2b1c7a;
     justify-content: center;
     width: 100%;
 }
@@ -52,8 +51,23 @@ a:link {
     text-decoration: none;
 }
 
-
-
 a:visited {
     color: black;
+}
+
+@media (max-width : 450px){
+    .show__info {
+        row-gap: 10px;
+        padding: 5px;
+    }
+    .list__show {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        padding: 10px;
+    }
+    .list__show {
+        row-gap: 5px;
+        padding: 5px;
+    }
 }
