@@ -7,40 +7,50 @@ use Exception\ParameterException;
 use Html\AppWebPage;
 
 try {
-    if (isset($_GET['seasonId']) && !empty($_GET['seasonId']) && ctype_digit($_GET['seasonId'])) {
+    if (!empty($_GET['seasonId']) && ctype_digit($_GET['seasonId'])) {
         $seasonId = $_GET['seasonId'];
     } else {
         throw new ParameterException();
     }
     $html = new AppWebPage();
     $season = Season::findById($seasonId);
-    $nomSerie = $html->escapeString(Tvshow::findById($season->getTvShowId())->getName());
-    $html = new AppWebPage("Série Tv : {($nomSerie} \n {$html->escapeString($season->getName())}");
+    $seriesName = $html->escapeString(Tvshow::findById($season->getTvShowId())->getName());
+    $html = new AppWebPage("Série Tv : $seriesName \n {$html->escapeString($season->getName())}");
     $html->appendCss(
         <<<CSS
     .Saison,.Episode{
     display: flex;
-    flex-flow: row nowrap;
-    border : 2px solid #5e9393;
-    }
-    .Titre{
-    display:flex;
-    justify-content: flex-end;
+    flex-flow: row wrap;
+    border : 2px solid #456969;
+    margin: 4px;
+    background-color: #5e9393;  
     }
     .Episode{
     flex-grow: 1;
+    border-radius : 20px;
     }
     .Saison{
-    flex-grow: 2;
+    font-size: 30px;
+    padding : 10px;
+    flex-grow: 2; 
+    justify-content: space-between;   
     }
+    .Info{
+    display: flex;
+    flex-direction: column;
+    justify-items: start;
+    font-size: 20px;
+}
 CSS
     );
     $html->appendContent(
         <<<HTML
 <div class = "Saison">
-   <img src = "poster.php?posterId = {$html->escapeString($season->getPosterId())}">
-   <p class = "Titre">{$html->escapeString($season->getName())}</p>
-   <p class = "Titre">$nomSerie</p>
+   <img src = "poster.php?posterId={$season->getPosterId()}">
+   <div class = "Info">
+   <article>{$html->escapeString($season->getName())} </article>
+   <article>$seriesName</article>
+   </div>
 </div>
 HTML
     );
@@ -48,12 +58,14 @@ HTML
         $html->appendContent(
             <<<HTML
 <div class="Episode">
-    <p> {$html->escapeString($episode->getEpisodeNumber())} - {$html->escapeString($episode->getEpisodeName())}</p>
-    <br>
-    <p> {$html->escapeString($episode->getOverview())}</p>
-</div>
+    <p> {$html->escapeString($episode->getEpisodeNumber())} - {$html->escapeString($episode->getName())}</p>
 HTML
         );
+        if (!empty($episode->getOverview())) {
+            $html->appendContent("<p>{$episode->getOverview()}</p>");
+        }
+        $html->appendContent("</div>");
+
     }
     echo $html->toHtml();
 } catch(EntityNotFoundException $e) {

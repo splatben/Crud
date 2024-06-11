@@ -7,6 +7,11 @@ namespace Html;
 class WebPage
 {
     /**
+     * @param String $title Optionnel
+     * Constructeur de la classe prend en paramètre le Titre de la page Web
+     */
+    use StringEscaper;
+    /**
      * @var string
      * Donnée au format Html entre <head> et </head>
      */
@@ -21,12 +26,6 @@ class WebPage
      * Donnée au format html entre <title></title>
      */
     private string $body = "";
-
-    /**
-     * @param String $title Optionnel
-     * Constructeur de la classe prend en paramètre le Titre de la page Web
-     */
-    use StringEscaper;
 
     public function __construct(string $title = "")
     {
