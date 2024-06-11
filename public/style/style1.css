@@ -35,7 +35,7 @@ img {
     height : 231px;
     width: 154px;
 }
-@media (max-width: 400px){
+@media (max-width: 450px){
     h1{
         font-size: 20px;
     }
