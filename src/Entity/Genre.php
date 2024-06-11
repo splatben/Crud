@@ -38,7 +38,7 @@ SQL);
         }
     }
 
-    public function getTvShows():array
+    public function getTvShows(): array
     {
         return TvshowCollection::findByGenreId($this->id);
     }

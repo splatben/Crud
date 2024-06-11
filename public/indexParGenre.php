@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 
+use Database\MyPdo;
 use Entity\Collection\TvshowCollection;
 use Entity\Genre;
 use Html\AppWebPage;
@@ -18,6 +19,17 @@ if (!empty($_GET['genreId']) && ctype_digit($_GET['genreId'])) {
 $genre = Genre::findById($genreId);
 $webPage = new AppWebPage("Séries TV du genre {$genre->getName()}");
 $webPage->appendCssUrl("style/index.css");
+if($genreId > 1) {
+    $genreBefore = $genreId - 1;
+    $webPage->appendButtonToMenu("indexParGenre.php?genreId=$genreBefore", "Genre précédent");
+}
+$idMax = MyPdo::getInstance()->prepare("Select Max(id) from genre;");
+$idMax->execute();
+$idMax = $idMax->fetch(PDO::FETCH_NUM)[0];
+if ($genreId < $idMax) {
+    $genreAfter = $genreId + 1;
+    $webPage->appendButtonToMenu("indexParGenre.php?genreId=$genreAfter", "Genre Suivant");
+}
 foreach ($genre->getTvShows() as $show) {
     $source = "img/default.png";
     if ($show->getPosterId() !== null) {
