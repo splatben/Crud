@@ -54,13 +54,9 @@ class Season
         }
     }
 
-    public function getPoster(): ?Poster
+    public function getPoster(): string
     {
-        if (!empty($this->posterId)) {
-            return Poster::findById($this->posterId);
-        } else {
-            return null;
-        }
+        return "http://localhost:8000/poster.php?posterId={$this->posterId}";
     }
 
     public function getEpisodes(): array
