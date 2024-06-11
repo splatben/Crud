@@ -18,11 +18,7 @@ HTML);
 
 $tvShows = TvshowCollection::findAll();
 foreach ($tvShows as $show) {
-    $source = "img/default.png";
-    if ($show->getPosterId() !== null) {
-        $source = "poster.php?posterId={$show->getPosterId()}";
-    }
-
+    $source = "poster.php?posterId={$show->getPosterId()}";
     $webPage->appendContent(<<<HTML
     <div class="show">
         <a class="link" href="tvshow.php?tvshowId={$show->getId()}">
