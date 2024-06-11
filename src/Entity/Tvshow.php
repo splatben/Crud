@@ -11,14 +11,14 @@ use PDO;
 
 class Tvshow
 {
-    private int $id;
+    private ?int $id;
     private string $name;
     private string $originalName;
     private string $homepage;
     private string $overview;
     private ?int $posterId ;
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -47,6 +47,29 @@ class Tvshow
     {
         return $this->posterId;
     }
+    private  function setId(?int $id):void
+    {
+        $this->id = $id;
+    }
+
+    public  function setName(string $name):void
+    {
+        $this->name = $name;
+    }
+    public  function setOriginalName(string $originalName):void
+    {
+        $this->originalName = $originalName;
+    }
+    public  function setHomepage(string $homepage):void
+    {
+        $this->homepage = $homepage;
+    }
+    public  function setOverview(string $overview):void
+    {
+        $this->overview = $overview;
+    }
+
+
 
     public static function findById(int $id): Tvshow
     {
