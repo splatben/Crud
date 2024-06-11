@@ -25,6 +25,9 @@ try {
 $title = "Séries TV : {$show->getName()}";
 
 $webPage = new AppWebPage($title);
+$webPage->appendCssUrl("style/tvshow.css");
+
+
 $sourcePosterShow = "img/default.png";
 if ($show->getPosterId() !== null) {
     $sourcePosterShow = "poster.php?posterId={$show->getPosterId()}";
