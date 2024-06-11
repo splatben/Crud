@@ -20,10 +20,10 @@ try {
 
     $show = Tvshow::findById($tvshowId);
     $webPage = new AppWebPage();
+    $webPage->appendButtonToMenu("admin/tvshow-form.php?tvshowId={$show->getId()}", "Modifier");
 
     $title = "Séries TV : {$webPage->escapeString($show->getName())}";
     $webPage->setTitle($title);
-    $webPage = new AppWebPage($title);
     $webPage->appendCssUrl("style/tvshow.css");
 
 
