@@ -18,7 +18,7 @@ try {
     }
     $webPage->setTitle($title);
     $tvshowForm = new TvshowForm($show);
-    $webPage->appendContent($tvshowForm->getHtmlForm("artist-save.php"));
+    $webPage->appendContent($tvshowForm->getHtmlForm("tvshow-save.php"));
     echo $webPage->toHtml();
 
 } catch (ParameterException) {
