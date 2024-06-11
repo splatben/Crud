@@ -26,14 +26,14 @@ try {
     background-color: #5e9393;  
     }
     .Episode{
-    flex-grow: 1;
     border-radius : 20px;
+    padding : 4px;
     }
     .Season{
     font-size: 30px;
     padding : 10px;
-    flex-grow: 2; 
     justify-content: space-between;   
+    height : 247px;
     }
     .Info{
     display: flex;
