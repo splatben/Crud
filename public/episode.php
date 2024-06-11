@@ -50,7 +50,7 @@ try {
     $html->appendContent(
         <<<HTML
     <div class = "Season">
-       <img src = "poster.php?posterId={$season->getPosterId()}" alt="Poster de la saison {$season->getName()}du show Télévisée de $seriesName">
+       <img src = "{$season->getPoster()}" alt="Poster de la saison {$season->getName()}du show Télévisée de $seriesName">
        <div class = "Info">
        <a href = "tvshow.php?tvshowId={$season->getTvShowId()}">{$html->escapeString($season->getName())} </a>
        <article>$seriesName</article>

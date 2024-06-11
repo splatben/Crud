@@ -87,13 +87,9 @@ SQL);
         }
     }
 
-    public function getPoster(): ?Poster
+    public function getPoster(): string
     {
-        $poster = null;
-        if (isset($this->posterId)) {
-            $poster = Poster::findById($this->posterId);
-        }
-        return $poster;
+        return "http://localhost:8000/poster.php?posterId={$this->posterId}";
     }
 
     public function getSeasons(): array

@@ -35,10 +35,9 @@ $webPage->appendContent(<<<HTML
 
 HTML);
 foreach ($genre->getTvShows() as $show) {
-    $source = "poster.php?posterId={$show->getPosterId()}";
     $webPage->appendContent(<<<HTML
     <div class="show">
-        <img src="$source" alt="poster">
+        <img src=""{$show->getPoster()}" alt="poster">
         <div class="show__info">
             <a class = "link" href="tvshow.php?tvshowId={$show->getId()}">
             <article class="show__name">{$webPage->escapeString($show->getName())}</article>
