@@ -3,6 +3,7 @@
 namespace Entity;
 
 use Database\MyPdo;
+use Entity\Collection\EpisodeCollection;
 use Entity\Exception\EntityNotFoundException;
 use PDO;
 
@@ -60,5 +61,10 @@ class Season
         } else {
             return null;
         }
+    }
+
+    public function getEpisodes(): array
+    {
+        return EpisodeCollection::findBySeasonId($this->id);
     }
 }
