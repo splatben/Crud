@@ -10,6 +10,9 @@
     height: 231px;
 
 }
+.show:hover {
+    background-color: #cccccc;
+}
 
 .show:nth-child(odd){
     flex-direction: row;
@@ -38,4 +41,19 @@
 .show__desc {
     text-align: start;
     overflow: scroll;
+}
+
+.link {
+    display: block;
+}
+
+a:link {
+    color: black;
+    text-decoration: none;
+}
+
+
+
+a:visited {
+    color: black;
 }
