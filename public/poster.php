@@ -8,16 +8,17 @@ use Entity\Poster;
 use Exception\ParameterException;
 
 try {
-    if (isset($_GET['posterId']) && !empty($_GET['posterId']) && ctype_digit($_GET['posterId'])) {
+    $posterId = null;
+    if (!empty($_GET['posterId']) && ctype_digit($_GET['posterId'])) {
         $posterId = (int) $_GET['posterId'];
     } else {
-        throw new ParameterException();
+        header('content-Type: image/jpeg');
+        echo readfile('img/default.png');
     }
 
     $poster = Poster::findById($posterId);
     header('content-Type: image/jpeg');
     echo $poster->getJpeg();
-
 } catch (ParameterException $e) {
     http_response_code(400);
 } catch (EntityNotFoundException $e) {

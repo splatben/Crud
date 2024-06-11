@@ -50,11 +50,7 @@ HTML
     $seasons = $show->getSeasons();
 
     foreach ($seasons as $season) {
-        $sourcePosterSeason = "img/default.png";
-        if ($season->getPosterId() !== null) {
-            $sourcePosterSeason = "poster.php?posterId={$season->getPosterId()}";
-        }
-
+        $sourcePosterSeason = "poster.php?posterId={$season->getPosterId()}";
         $webPage->appendContent(
             <<<HTML
         <div class="season">

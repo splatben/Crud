@@ -31,11 +31,7 @@ if ($genreId < $idMax) {
     $webPage->appendButtonToMenu("indexParGenre.php?genreId=$genreAfter", "Genre Suivant");
 }
 foreach ($genre->getTvShows() as $show) {
-    $source = "img/default.png";
-    if ($show->getPosterId() !== null) {
-        $source = "poster.php?posterId={$show->getPosterId()}";
-    }
-
+    $source = "poster.php?posterId={$show->getPosterId()}";
     $webPage->appendContent(<<<HTML
     <div class="show">
         <a class="link" href="tvshow.php?tvshowId={$show->getId()}">
