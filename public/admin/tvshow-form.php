@@ -11,8 +11,6 @@ try {
     $show = null;
     if (!empty($_GET['tvshowId']) && ctype_digit($_GET['tvshowId'])) {
         $show = Tvshow::findById((int) $_GET['tvshowId']);
-    } else {
-        throw new ParameterException();
     }
 
     $tvshowForm = new TvshowForm($show);
