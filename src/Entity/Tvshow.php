@@ -132,7 +132,7 @@ SQL);
         return $this;
     }
 
-    public function create(string $name, string $ogName, string $homepage, string $overview, ?int $id = null): Tvshow
+    public static function create(string $name, string $ogName, string $homepage, string $overview, ?int $id = null): Tvshow
     {
         $show = new Tvshow();
         $show->setName($name);
