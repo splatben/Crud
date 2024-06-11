@@ -19,9 +19,9 @@ try {
 
 
     $show = Tvshow::findById($tvshowId);
-    $webPage = new AppWebPage;
+    $webPage = new AppWebPage();
 
-    $title = "Séries TV : {$show->getName()}";
+    $title = "Séries TV : {$webPage->escapeString($show->getName())}";
     $webPage->setTitle($title);
     $webPage = new AppWebPage($title);
     $webPage->appendCssUrl("style/tvshow.css");
@@ -32,13 +32,14 @@ try {
         $sourcePosterShow = "poster.php?posterId={$show->getPosterId()}";
     }
 
-    $webPage->appendContent(<<<HTML
+    $webPage->appendContent(
+        <<<HTML
     <div class="show">
         <img src="$sourcePosterShow" alt="Poster show">
         <div class="show__info">
-            <a class="show__title">{$show->getName()}</a>
-            <a class="show__title">{$show->getOriginalName()}</a>
-            <a class="show__desc">{$show->getOverview()}</a>
+            <a class="show__title">{$webPage->escapeString($show->getName())}</a>
+            <a class="show__title">{$webPage->escapeString($show->getOriginalName())}</a>
+            <a class="show__desc">{$webPage->escapeString($show->getOverview())}</a>
         </div>
     </div>
     <div class="list__season">
@@ -54,10 +55,11 @@ HTML
             $sourcePosterSeason = "poster.php?posterId={$season->getPosterId()}";
         }
 
-        $webPage->appendContent(<<<HTML
+        $webPage->appendContent(
+            <<<HTML
         <div class="season">
             <img src="$sourcePosterSeason" alt="Poster season">
-            <a class="season__title">{$season->getName()}</a>
+            <a class="season__title">{$webPage->escapeString($season->getName())}</a>
         </div>
 
 HTML
@@ -68,7 +70,7 @@ HTML
 
     echo $webPage->toHtml();
 
-} catch (ParameterException $e){
+} catch (ParameterException $e) {
     http_response_code(400);
 } catch (EntityNotFoundException $e) {
     http_response_code(404);
