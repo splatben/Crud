@@ -38,7 +38,7 @@ class TvshowCest
     {
         $show = Tvshow::findById(70);
         $show->delete();
-        $I->cantSeeInDatabase('tvshow', ['id'=>70]);
+        $I->cantSeeInDatabase('tvshow', ['id' => 70]);
         $I->cantSeeInDatabase('tvshow', ['name' => 'Hunters']);
         $I->assertNull($show->getId());
         $I->assertSame('Hunters', $show->getName());
@@ -59,11 +59,11 @@ class TvshowCest
             'homepage' => 'HP test',
             'overview' => 'OV test'
         ]);
-        $I->assertSame(57,$show->getId());
-        $I->assertSame('name test',$show->getName());
-        $I->assertSame('OG name test',$show->getOriginalName());
-        $I->assertSame('HP test',$show->getHomepage());
-        $I->assertSame('OV test',$show->getOverview());
+        $I->assertSame(57, $show->getId());
+        $I->assertSame('name test', $show->getName());
+        $I->assertSame('OG name test', $show->getOriginalName());
+        $I->assertSame('HP test', $show->getHomepage());
+        $I->assertSame('OV test', $show->getOverview());
 
     }
 
