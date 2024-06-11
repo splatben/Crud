@@ -26,6 +26,7 @@ class WebPage
      * @param String $title Optionnel
      * Constructeur de la classe prend en paramètre le Titre de la page Web
      */
+    use StringEscaper;
 
     public function __construct(string $title = "")
     {
