@@ -51,7 +51,7 @@ class TvshowCest
         $show->setOriginalName('OG name test');
         $show->setHomepage('HP test');
         $show->setOverview('OV test');
-        $show->update();
+        $show->save();
         $I->canSeeNumRecords(1, 'tvshow', [
             'id' => 57,
             'name' => 'name test',
@@ -87,6 +87,23 @@ class TvshowCest
         $I->assertSame('HP test', $show->getHomepage());
         $I->assertSame('OV test', $show->getOverview());
         $I->assertNull($show->getPosterId());
+    }
+
+    /**
+     * @after createWithoutId
+     */
+    public function insert(Crudtester $I): void
+    {
+        $show = Tvshow::create('name test', 'OG name test', 'HP test', 'OV test');
+        $show->save();
+        $I->canSeeNumRecords(1, 'tvshow', [
+            'id' => 83,
+            'name' => 'name test',
+            'originalName' => 'OG name test',
+            'homepage' => 'HP test',
+            'overview' => 'OV test'
+        ]);
+        $I->assertSame(83, $show->getId());
     }
 
 }
