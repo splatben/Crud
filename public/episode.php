@@ -29,7 +29,7 @@ try {
     flex-grow: 1;
     border-radius : 20px;
     }
-    .Saison{
+    .Season{
     font-size: 30px;
     padding : 10px;
     flex-grow: 2; 
