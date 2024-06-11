@@ -53,28 +53,28 @@ HTML;
     public function setEntityFromQueryString(): void
     {
         $name = '';
-        if(empty($_POST['name'])) {
+        if(!empty($_POST['name'])) {
             $name = $this->stripTagsAndTrim($this->escapeString($_POST['name']));
         } else {
             throw new ParameterException();
         }
 
         $ogName = '';
-        if(empty($_POST['originalName'])) {
+        if(!empty($_POST['originalName'])) {
             $ogName = $this->stripTagsAndTrim($this->escapeString($_POST['originalName']));
         } else {
             throw new ParameterException();
         }
 
         $homepage = '';
-        if(empty($_POST['homepage'])) {
+        if(!empty($_POST['homepage'])) {
             $homepage = $this->stripTagsAndTrim($this->escapeString($_POST['homepage']));
         } else {
             throw new ParameterException();
         }
 
         $overview = '';
-        if(empty($_POST['overview'])) {
+        if(!empty($_POST['overview'])) {
             $overview = $this->stripTagsAndTrim($this->escapeString($_POST['overview']));
         } else {
             throw new ParameterException();
