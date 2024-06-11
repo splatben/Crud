@@ -7,14 +7,15 @@ use Exception\ParameterException;
 use Html\AppWebPage;
 
 try {
-    if (isset($_Get['seasonId']) && !empty($_GET['seasonId']) && ctype_digit($_Get['seasonId'])) {
-        $seasonId = $_Get['seasonId'];
+    if (isset($_GET['seasonId']) && !empty($_GET['seasonId']) && ctype_digit($_GET['seasonId'])) {
+        $seasonId = $_GET['seasonId'];
     } else {
         throw new ParameterException();
     }
+    $html = new AppWebPage();
     $season = Season::findById($seasonId);
-    $nomSerie = Tvshow::findById($season->getTvShowId())->getName();
-    $html = new AppWebPage("Série Tv : {$nomSerie} \n {$season->getName()}");
+    $nomSerie = $html->escapeString(Tvshow::findById($season->getTvShowId())->getName());
+    $html = new AppWebPage("Série Tv : {($nomSerie} \n {$html->escapeString($season->getName())}");
     $html->appendCss(
         <<<CSS
     .Saison,.Episode{
@@ -37,8 +38,8 @@ CSS
     $html->appendContent(
         <<<HTML
 <div class = "Saison">
-   <img src = "poster.php?posterId = {$season->getPosterId()}">
-   <p class = "Titre">{$season->getName()}</p>
+   <img src = "poster.php?posterId = {$html->escapeString($season->getPosterId())}">
+   <p class = "Titre">{$html->escapeString($season->getName())}</p>
    <p class = "Titre">$nomSerie</p>
 </div>
 HTML
@@ -47,9 +48,9 @@ HTML
         $html->appendContent(
             <<<HTML
 <div class="Episode">
-    <p> {$episode->getEpisodeNumber()} - {$episode->getEpisodeName()}</p>
+    <p> {$html->escapeString($episode->getEpisodeNumber())} - {$html->escapeString($episode->getEpisodeName())}</p>
     <br>
-    <p> {$episode->getOverview()}</p>
+    <p> {$html->escapeString($episode->getOverview())}</p>
 </div>
 HTML
         );
