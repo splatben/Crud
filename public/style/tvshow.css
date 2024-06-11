@@ -17,14 +17,6 @@
     flex-direction: column;
 }
 
-img {
-    align-self: center;
-    height: 231px;
-    padding:  10px;
-}
-
-
-
 .show__title {
     align-self: flex-end;
     font-weight: bold;
@@ -60,3 +52,37 @@ img {
     height:100%;
 }
 a:link{text-decoration: none}a:visited{text-decoration: none;}
+
+@media screen and (max-width: 400px){
+    .season__title {
+        font-size : 25px;
+        padding:  2px;
+    }
+    .season {
+        background-color: #3a3939;
+        border-bottom-right-radius: 12px;
+        border-top-right-radius: 12px;
+        cursor : pointer;
+
+    }.show__title {
+         font-size: 15px;
+     }
+
+    .show__desc {
+        margin-top: 15px;
+    }
+    .show, .season {
+        margin:2px;
+        column-gap: 2px;
+    }
+
+    .show {
+        flex-direction : column;
+    }
+
+    .show__info {
+        padding: 2px;
+        flex-direction: column;
+    }
+
+}
