@@ -41,6 +41,7 @@ try {
     justify-items: start;
     font-size: 20px;
     }
+    a:link{text-decoration:none;color:black}a:visited{text-decoration:none;color:black}
     CSS
     );
     $html->appendContent(
@@ -48,7 +49,7 @@ try {
     <div class = "Season">
        <img src = "poster.php?posterId={$season->getPosterId()}" alt="Poster de la saison {$season->getName()}du show Télévisée de $seriesName">
        <div class = "Info">
-       <a href = "TvShow.php?tvshowId{$season->getTvShowId()}">{$html->escapeString($season->getName())} </a>
+       <a href = "tvShow.php?tvshowId={$season->getTvShowId()}">{$html->escapeString($season->getName())} </a>
        <article>$seriesName</article>
        </div>
     </div>
