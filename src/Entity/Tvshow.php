@@ -113,7 +113,7 @@ SQL);
         return $this;
     }
 
-    public function update(): Tvshow
+    protected function update(): Tvshow
     {
         $update = MyPdo::getInstance()->prepare(<<<SQL
     UPDATE tvshow
@@ -150,7 +150,7 @@ SQL);
 
     }
 
-    public function insert(): Tvshow
+    protected function insert(): Tvshow
     {
         $insert = MyPdo::getInstance()->prepare(<<<SQL
         INSERT INTO tvshow (name,originalName,homepage,overview)
@@ -161,6 +161,17 @@ SQL);
             'homepage' => $this->homepage,
             'overview' => $this->overview]);
         $this->setId((int) MyPdo::getInstance()->lastInsertId());
+        return $this;
+    }
+
+    public function save(): Tvshow
+    {
+        if ($this->id === null)
+        {
+           $this->insert();
+        } else {
+            $this->update();
+        }
         return $this;
     }
 
