@@ -28,3 +28,18 @@ body{
     text-align: center;
     background: white;
 }
+
+form {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    row-gap: 10px;
+}
+
+form label {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: start;
+}
