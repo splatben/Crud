@@ -18,10 +18,10 @@ try {
     header('content-Type: image/jpeg');
     echo $poster->getJpeg();
 
-} catch (ParameterException) {
+} catch (ParameterException $e) {
     http_response_code(400);
-} catch (EntityNotFoundException) {
+} catch (EntityNotFoundException $e) {
     http_response_code(404);
-} catch (Exception) {
+} catch (Exception $e) {
     http_response_code(500);
 }
