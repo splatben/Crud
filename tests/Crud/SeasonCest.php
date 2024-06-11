@@ -6,13 +6,13 @@ use Entity\Exception\EntityNotFoundException;
 use Entity\Season;
 use Tests\CrudTester;
 
-class SeasonCest {
-
+class SeasonCest
+{
     public function findById(CrudTester $I): void
     {
-        $seas= Season::findById(3);
+        $seas = Season::findById(13);
         $I->assertSame(13, $seas->getId());
-        $I->assertSame(3,$seas->getTvShowId());
+        $I->assertSame(3, $seas->getTvShowId());
         $I->assertSame('Épisodes spéciaux', $seas->getName());
         $I->assertSame(2147483647, $seas->getSeasonNumber());
         $I->assertSame(16, $seas->getPosterId());
