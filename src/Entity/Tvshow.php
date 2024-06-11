@@ -118,7 +118,7 @@ SQL);
         $update = MyPdo::getInstance()->prepare(<<<SQL
     UPDATE tvshow
     SET name = :showName,
-        origianlName = :showOGName,
+        originalName = :showOGName,
         homepage = :showHomepage,
         overview = :showOverview
     WHERE id = :showId
