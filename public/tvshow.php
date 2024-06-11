@@ -17,25 +17,16 @@ try {
         exit;
     }
 
-
     $show = Tvshow::findById($tvshowId);
     $webPage = new AppWebPage();
     $webPage->appendButtonToMenu("admin/tvshow-form.php?tvshowId={$show->getId()}", "Modifier");
-
     $title = "Séries TV : {$webPage->escapeString($show->getName())}";
     $webPage->setTitle($title);
     $webPage->appendCssUrl("style/tvshow.css");
-
-
-    $sourcePosterShow = "img/default.png";
-    if ($show->getPosterId() !== null) {
-        $sourcePosterShow = "poster.php?posterId={$show->getPosterId()}";
-    }
-
     $webPage->appendContent(
         <<<HTML
     <div class="show">
-        <img src="$sourcePosterShow" alt="Poster show">
+        <img src="{$show->getPoster()}" alt="Poster show">
         <div class="show__info">
             <article class="show__title">{$webPage->escapeString($show->getName())}</article>
             <article class="show__title">{$webPage->escapeString($show->getOriginalName())}</article>
@@ -46,16 +37,13 @@ try {
 
 HTML
     );
-
     $seasons = $show->getSeasons();
-
     foreach ($seasons as $season) {
-        $sourcePosterSeason = "poster.php?posterId={$season->getPosterId()}";
         $webPage->appendContent(
             <<<HTML
         <div class="season">
             <a class = "link" href="episode.php?seasonId={$season->getid()}">
-            <img src="$sourcePosterSeason" alt="Poster season">
+            <img src="{$season->getPoster()}" alt="Poster season">
             <article class="season__title">{$webPage->escapeString($season->getName())}</article>
             </a>
         </div>
