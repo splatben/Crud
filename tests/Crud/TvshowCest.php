@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Crud;
 
 use Entity\Exception\EntityNotFoundException;
 use Entity\Tvshow;
@@ -32,6 +32,16 @@ class TvshowCest
         $I->assertSame(15, $poster->getId());
         $I->assertSame(file_get_contents(codecept_data_dir().'/Poster/posterTest.jpeg'), $poster->getJpeg());
 
+    }
+
+    public function delete(CrudTester $I): void
+    {
+        $show = Tvshow::findById(70);
+        $show->delete();
+        $I->cantSeeInDatabase('tvshow', ['id'=>70]);
+        $I->cantSeeInDatabase('tvshow', ['name' => 'Hunters']);
+        $I->assertNull($show->getId());
+        $I->assertSame('Hunters', $show->getName());
     }
 
 }
