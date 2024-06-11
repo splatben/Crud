@@ -18,7 +18,6 @@ try {
     $poster = Poster::findById($posterId);
     header('content-Type: image/jpeg');
     echo $poster->getJpeg();
-
 } catch (ParameterException $e) {
     http_response_code(400);
 } catch (EntityNotFoundException $e) {
