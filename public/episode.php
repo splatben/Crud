@@ -25,23 +25,21 @@ try {
     margin: 4px;
     background-color: #5e9393;  
     }
-    .Titre{
-    align-self: flex-end;
-    font-size: 20px;
-    }
     .Episode{
     flex-grow: 1;
     border-radius : 20px;
     }
     .Saison{
     font-size: 30px;
-    padding : 5px;
-    flex-grow: 2;    
+    padding : 10px;
+    flex-grow: 2; 
+    justify-content: space-between;   
     }
-    .info{
-    padding:  10px;
+    .Info{
     display: flex;
     flex-direction: column;
+    justify-items: start;
+    font-size: 20px;
 }
 CSS
     );
@@ -50,8 +48,8 @@ CSS
 <div class = "Saison">
    <img src = "poster.php?posterId={$season->getPosterId()}">
    <div class = "Info">
-   <p class ="Titre">{$html->escapeString($season->getName())} </p>
-   <p class ="Titre">$seriesName</p>
+   <article>{$html->escapeString($season->getName())} </article>
+   <article>$seriesName</article>
    </div>
 </div>
 HTML
@@ -63,7 +61,7 @@ HTML
     <p> {$html->escapeString($episode->getEpisodeNumber())} - {$html->escapeString($episode->getName())}</p>
 HTML
         );
-        if (!empty($episode->getOverview())){
+        if (!empty($episode->getOverview())) {
             $html->appendContent("<p>{$episode->getOverview()}</p>");
         }
         $html->appendContent("</div>");
