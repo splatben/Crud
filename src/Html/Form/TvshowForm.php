@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Html\Form;
 
 use Entity\Tvshow;
+use Exception\ParameterException;
 use Html\StringEscaper;
 
 class TvshowForm
 {
-    private ?Tvshow $show;
-
     use StringEscaper;
+    private ?Tvshow $show;
     /**
      * @param Tvshow|null $show
      */
@@ -20,7 +20,7 @@ class TvshowForm
         $this->show = $show;
     }
 
-    public  function getShow(): ?Tvshow
+    public function getShow(): ?Tvshow
     {
         return $this->show;
     }
@@ -45,7 +45,47 @@ class TvshowForm
     <button type="submit">Enregister</button>
 </form>
 HTML;
+    }
 
+    /**
+     * @throws ParameterException
+     */
+    public function setEntityFromQueryString(): void
+    {
+        $name = '';
+        if(empty($_POST['name'])) {
+            $name = $this->stripTagsAndTrim($this->escapeString($_POST['name']));
+        } else {
+            throw new ParameterException();
+        }
+
+        $ogName = '';
+        if(empty($_POST['originalName'])) {
+            $ogName = $this->stripTagsAndTrim($this->escapeString($_POST['originalName']));
+        } else {
+            throw new ParameterException();
+        }
+
+        $homepage = '';
+        if(empty($_POST['homepage'])) {
+            $homepage = $this->stripTagsAndTrim($this->escapeString($_POST['homepage']));
+        } else {
+            throw new ParameterException();
+        }
+
+        $overview = '';
+        if(empty($_POST['overview'])) {
+            $overview = $this->stripTagsAndTrim($this->escapeString($_POST['overview']));
+        } else {
+            throw new ParameterException();
+        }
+
+        $id = null;
+        if (!empty($_POST['id']) && ctype_digit($_POST['id'])) {
+            $id = (int) $_POST['id'];
+        }
+
+        $this->show = Tvshow::create($name, $ogName, $homepage, $overview, $id);
     }
 
 
