@@ -30,16 +30,19 @@ try {
     padding : 4px;
     }
     .Season{
-    font-size: 30px;
-    padding : 10px;
+    padding : 5px;
     justify-content: space-between;   
-    height : 247px;
+    flex-wrap:nowrap;
     }
     .Info{
     display: flex;
     flex-direction: column;
-    justify-items: start;
     font-size: 20px;
+    }
+    @media (max-width:400px){
+        .Season{
+        flex-flow: column nowrap;
+        }
     }
     a:link{text-decoration:none;color:black}a:visited{text-decoration:none;color:black}
     CSS
