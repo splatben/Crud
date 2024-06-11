@@ -8,10 +8,11 @@ use Entity\Poster;
 use Exception\ParameterException;
 
 try {
-    if (isset($_GET['posterId']) && !empty($_GET['posterId']) && ctype_digit($_GET['posterId'])) {
+    if (!empty($_GET['posterId']) && ctype_digit($_GET['posterId'])) {
         $posterId = (int) $_GET['posterId'];
     } else {
-        throw new ParameterException();
+        header('content-Type: image/jpeg');
+        echo file_get_contents(codecept_data_dir().'/img/default.png');
     }
 
     $poster = Poster::findById($posterId);
