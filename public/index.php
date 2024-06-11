@@ -10,8 +10,7 @@ use Entity\Tvshow;
 $webPage = new AppWebPage();
 $webPage->setTitle("Séries TV");
 $webPage->appendCssUrl("style/index.css");
-
-
+$webPage->appendButtonToMenu("indexParGenre.php?genreId=1", "Index Par genre");
 $webPage->appendContent(<<<HTML
 <div class="list__show">
 
