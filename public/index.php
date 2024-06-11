@@ -28,8 +28,8 @@ foreach ($tvshows as $show) {
     <div class="show">
         <img src="$source" alt="poster">
         <div class="show__info">
-            <a class="show__name">{$show->getName()}</a>
-            <a class="show__desc">{$show->getOverview()}</a>
+            <a class="show__name">{$webPage->escapeString($show->getName())}</a>
+            <a class="show__desc">{$webPage->escapeString($show->getOverview())}</a>
         </div>
     </div>
 
