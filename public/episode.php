@@ -48,7 +48,7 @@ try {
     <div class = "Season">
        <img src = "poster.php?posterId={$season->getPosterId()}" alt="Poster de la saison {$season->getName()}du show Télévisée de $seriesName">
        <div class = "Info">
-       <article>{$html->escapeString($season->getName())} </article>
+       <a href = "TvShow.php?tvshowId{$season->getTvShowId()}">{$html->escapeString($season->getName())} </a>
        <article>$seriesName</article>
        </div>
     </div>
