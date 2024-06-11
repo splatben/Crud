@@ -166,9 +166,8 @@ SQL);
 
     public function save(): Tvshow
     {
-        if ($this->id === null)
-        {
-           $this->insert();
+        if ($this->id === null) {
+            $this->insert();
         } else {
             $this->update();
         }
