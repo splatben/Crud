@@ -67,4 +67,26 @@ class TvshowCest
 
     }
 
+    public function createWithoutId(CrudTester $I): void
+    {
+        $show = Tvshow::create('name test', 'OG name test', 'HP test', 'OV test');
+        $I->assertNull($show->getId());
+        $I->assertSame('name test', $show->getName());
+        $I->assertSame('OG name test', $show->getOriginalName());
+        $I->assertSame('HP test', $show->getHomepage());
+        $I->assertSame('OV test', $show->getOverview());
+        $I->assertNull($show->getPosterId());
+    }
+
+    public function createWithId(CrudTester $I): void
+    {
+        $show = Tvshow::create('name test', 'OG name test', 'HP test', 'OV test', 20);
+        $I->assertSame(20, $show->getId());
+        $I->assertSame('name test', $show->getName());
+        $I->assertSame('OG name test', $show->getOriginalName());
+        $I->assertSame('HP test', $show->getHomepage());
+        $I->assertSame('OV test', $show->getOverview());
+        $I->assertNull($show->getPosterId());
+    }
+
 }
