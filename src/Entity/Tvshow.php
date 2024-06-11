@@ -113,4 +113,25 @@ SQL);
         return $this;
     }
 
+    public function update(): Tvshow
+    {
+        $update = MyPdo::getInstance()->prepare(<<<SQL
+    UPDATE tvshow
+    SET name = :showName,
+        origianlName = :showOGName,
+        homepage = :showHomepage,
+        overview = :showOverview
+    WHERE id = :showId
+
+SQL);
+        $update->execute([':showName' => $this->name,
+            ':showOGName' => $this->originalName,
+            ':showHomepage' => $this->homepage,
+            ':showOverview' => $this->overview,
+            ':showId' => $this->id]);
+        return $this;
+    }
+
+
+
 }
