@@ -3,6 +3,7 @@
 namespace Entity;
 
 use Database\MyPdo;
+use Entity\Collection\TvshowCollection;
 use Entity\Exception\EntityNotFoundException;
 use PDO;
 
@@ -35,5 +36,10 @@ SQL);
         } else {
             return $genre;
         }
+    }
+
+    public function getTvShows():array
+    {
+        return TvshowCollection::findByGenreId($this->id);
     }
 }
