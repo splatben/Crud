@@ -40,7 +40,7 @@ img {
     background-color: #3a3939;
     border-bottom-right-radius: 50px;
     border-top-right-radius: 50px;
-
+    cursor : pointer;
 }
 
 .season__title {
@@ -53,4 +53,9 @@ img {
     text-align: start;
     width: 100%;
     color:white;
+}
+.link{
+    display : flex;
+    width:100%;
+    height:100%;
 }

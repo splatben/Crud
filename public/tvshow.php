@@ -37,9 +37,9 @@ try {
     <div class="show">
         <img src="$sourcePosterShow" alt="Poster show">
         <div class="show__info">
-            <a class="show__title">{$webPage->escapeString($show->getName())}</a>
-            <a class="show__title">{$webPage->escapeString($show->getOriginalName())}</a>
-            <a class="show__desc">{$webPage->escapeString($show->getOverview())}</a>
+            <article class="show__title">{$webPage->escapeString($show->getName())}</article>
+            <article class="show__title">{$webPage->escapeString($show->getOriginalName())}</article>
+            <article class="show__desc">{$webPage->escapeString($show->getOverview())}</article>
         </div>
     </div>
     <div class="list__season">
@@ -58,15 +58,16 @@ HTML
         $webPage->appendContent(
             <<<HTML
         <div class="season">
+            <a class = "link" href="episode.php?seasonId={$season->getid()}">
             <img src="$sourcePosterSeason" alt="Poster season">
-            <a class="season__title">{$webPage->escapeString($season->getName())}</a>
+            <article class="season__title">{$webPage->escapeString($season->getName())}</article>
+            </a>
         </div>
 
 HTML
         );
     }
     $webPage->appendContent("</div>");
-
 
     echo $webPage->toHtml();
 
