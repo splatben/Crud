@@ -25,12 +25,15 @@ foreach ($tvshows as $show) {
     }
 
     $webPage->appendContent(<<<HTML
+
     <div class="show">
+            <a class="link" href="tvshow.php?tvshowId={$show->getId()}">
         <img src="$source" alt="poster">
         <div class="show__info">
             <a class="show__name">{$webPage->escapeString($show->getName())}</a>
             <a class="show__desc">{$webPage->escapeString($show->getOverview())}</a>
         </div>
+        </a>
     </div>
 
 
