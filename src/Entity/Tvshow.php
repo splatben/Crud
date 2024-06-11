@@ -76,9 +76,9 @@ class Tvshow
         $stmt = MyPdo::getInstance()->prepare(<<<SQL
         SELECT *
         FROM tvshow
-        WHERE id = :tvshowId
+        WHERE id = :tvShowId
 SQL);
-        $stmt->execute([':tvshowId' => $id]);
+        $stmt->execute([':tvShowId' => $id]);
         $stmt->setFetchMode(PDO::FETCH_CLASS, Tvshow::class);
         if (($tvShow = $stmt->fetch()) === false) {
             throw new EntityNotFoundException();
@@ -108,7 +108,7 @@ SQL);
     WHERE id = :showId
 
 SQL);
-        $del->execute([':showId'=> $this->id]);
+        $del->execute([':showId' => $this->id]);
         $this->setId(null);
         return $this;
     }
