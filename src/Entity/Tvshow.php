@@ -47,24 +47,24 @@ class Tvshow
     {
         return $this->posterId;
     }
-    private  function setId(?int $id):void
+    private function setId(?int $id): void
     {
         $this->id = $id;
     }
 
-    public  function setName(string $name):void
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
-    public  function setOriginalName(string $originalName):void
+    public function setOriginalName(string $originalName): void
     {
         $this->originalName = $originalName;
     }
-    public  function setHomepage(string $homepage):void
+    public function setHomepage(string $homepage): void
     {
         $this->homepage = $homepage;
     }
-    public  function setOverview(string $overview):void
+    public function setOverview(string $overview): void
     {
         $this->overview = $overview;
     }
@@ -80,10 +80,10 @@ class Tvshow
 SQL);
         $stmt->execute([':tvshowId' => $id]);
         $stmt->setFetchMode(PDO::FETCH_CLASS, Tvshow::class);
-        if (($tvshow = $stmt->fetch()) === false) {
+        if (($tvShow = $stmt->fetch()) === false) {
             throw new EntityNotFoundException();
         } else {
-            return $tvshow;
+            return $tvShow;
         }
     }
 
@@ -99,6 +99,18 @@ SQL);
     public function getSeasons(): array
     {
         return SeasonCollection::findByTvShowId($this->id);
+    }
+
+    public function delete(): Tvshow
+    {
+        $del = MyPdo::getInstance()->prepare(<<<SQL
+    DELETE FROM tvshow
+    WHERE id = :showId
+
+SQL);
+        $del->execute([':showId'=> $this->id]);
+        $this->setId(null);
+        return $this;
     }
 
 }
