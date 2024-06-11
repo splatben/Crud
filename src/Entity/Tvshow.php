@@ -150,5 +150,19 @@ SQL);
 
     }
 
+    public function insert(): Tvshow
+    {
+        $insert = MyPdo::getInstance()->prepare(<<<SQL
+        INSERT INTO tvshow (name,originalName,homepage,overview)
+        VALUES (:name,:ogName,:homepage,:overview)
+SQL);
+        $insert->execute(['name' => $this->name,
+            'ogName' => $this->originalName,
+            'homepage' => $this->homepage,
+            'overview' => $this->overview]);
+        $this->setId((int) MyPdo::getInstance()->lastInsertId());
+        return $this;
+    }
+
 
 }
