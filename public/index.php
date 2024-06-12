@@ -29,11 +29,15 @@ try {
         $webPage->appendToMenu(<<<HTML
         <form method = 'GET' action='index.php'>
             <select name="genreId" onchange=this.form.submit()>
+            <option value=\"{$genre->getId()}\">{$genre->getName()}</option>
         HTML);
-        foreach(GenreCollection::findAll() as $genre) {
-            $webPage->appendToMenu("<option value=\"{$genre->getId()}\">{$genre->getName()}</option> ");
+        foreach(GenreCollection::findAll() as $genr) {
+            if ($genr->getId() != $genre->getId()) {
+                $webPage->appendToMenu("<option value=\"{$genr->getId()}\">{$genr->getName()}</option> ");
+            }
         }
         $webPage->appendToMenu("</select></form>");
+        $webPage->appendCss("form {width : 150px;row-gap:0;}");
     } else {
         $webPage->setTitle("Série Tv");
         $webPage->appendButtonToMenu("index.php?genreId=1", "Index Par genre");
