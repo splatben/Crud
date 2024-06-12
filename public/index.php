@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 
 use Database\MyPdo;
+use Entity\Collection\GenreCollection;
 use Entity\Collection\TvshowCollection;
 use Entity\Exception\EntityNotFoundException;
 use Entity\Genre;
@@ -19,31 +20,36 @@ try {
     } else {
         $SortByGenre = false;
     }
+    $genre = null;
     $webPage = new AppWebPage();
     $webPage->appendButtonToMenu("admin/tvshow-form.php", "Ajouter");
+    $webPage->appendToMenu(<<<HTML
+        <form method = 'GET' action='index.php'>
+            <select name="genreId" onchange=this.form.submit()>
+        HTML);
     if ($SortByGenre) {
         $genre = Genre::findById($genreId);
         $webPage->setTitle("Séries TV du genre {$genre->getName()}");
-        if ($genreId > 1) {
-            $genreBefore = $genreId - 1;
-            $webPage->appendButtonToMenu("index.php?genreId=$genreBefore", "Genre précédent");
-        }
-        $idMax = MyPdo::getInstance()->prepare("Select Max(id) from genre;");
-        $idMax->execute();
-        $idMax = $idMax->fetch(PDO::FETCH_NUM)[0];
-        if ($genreId < $idMax) {
-            $genreAfter = $genreId + 1;
-            $webPage->appendButtonToMenu("index.php?genreId=$genreAfter", "Genre Suivant");
-        }
+        $webPage->appendToMenu(<<<HTML
+            <option value=\"{$genre->getId()}\">{$genre->getName()}</option>
+        HTML);
     } else {
         $webPage->setTitle("Série Tv");
-        $webPage->appendButtonToMenu("index.php?genreId=1", "Index Par genre");
+        $webPage->appendToMenu(<<<HTML
+            <option value=\"0\">Index</option>
+        HTML);
     }
+    foreach(GenreCollection::findAll() as $genr) {
+        if ($genr->getId() != $genreId) {
+            $webPage->appendToMenu("<option value=\"{$genr->getId()}\">{$genr->getName()}</option> ");
+        }
+    }
+    $webPage->appendToMenu("</select></form>");
+    $webPage->appendCss("form {width : 150px;row-gap:0;}");
     $webPage->appendCssUrl("style/index.css");
     $webPage->appendContent(
         <<<HTML
     <div class="list__show">
-    
     HTML
     );
     $tvShows = null;

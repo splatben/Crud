@@ -4,7 +4,6 @@ html,body {
     background: #a6a6a6;
 
 }
-
 body{
     display : flex;
     flex-flow: column nowrap;
@@ -41,7 +40,23 @@ form label {
     justify-content: space-between;
     text-align: start;
 }
-
+.footer,.menu{
+    margin-top : 0;
+}
+.menu{
+    margin-bottom:0;
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content : center;
+}
+img {
+    align-self: center;
+    height : 231px;
+    width: 154px;
+}
+.button:hover {
+    border: 2px solid rgb(100, 100, 100);
+}
 @media (max-width: 450px){
     h1{
         font-size: 20px;
