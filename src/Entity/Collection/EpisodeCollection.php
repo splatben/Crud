@@ -18,10 +18,8 @@ class EpisodeCollection
         ORDER BY episodeNumber
         SQL);
         $req->execute([$id]);
-        if (empty($eps = $req->fetchAll(PDO::FETCH_CLASS, Episode::class))) {
-            throw new EntityNotFoundException();
-        } else {
-            return $eps;
-        }
+        $eps = $req->fetchAll(PDO::FETCH_CLASS, Episode::class);
+        return $eps;
+
     }
 }
