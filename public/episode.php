@@ -16,6 +16,8 @@ try {
     $season = Season::findById($seasonId);
     $seriesName = $html->escapeString(Tvshow::findById($season->getTvShowId())->getName());
     $html = new AppWebPage("Série Tv : $seriesName \n {$html->escapeString($season->getName())}");
+    $html->appendButtonToMenu("admin/seasonForm.php?tvShowId={$season->getTvShowId()}&seasonId={$season->getId()}", "Modifier");
+    $html->appendButtonToMenu("admin/season-delete.php?seasonId={$season->getId()}", "Supprimer");
     $html->appendCss(
         <<<CSS
     .Season,.Episode{

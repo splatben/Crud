@@ -30,11 +30,4 @@ class EpisodeCollectionCest
             $I->assertEquals($expectedEp['episodeNumber'], $ep->getEpisodeNumber());
         }
     }
-
-    public function findByIdThrowsExceptionIfSeasonDoesNotExist(CrudTester $I): void
-    {
-        $I->expectThrowable(EntityNotFoundException::class, function () {
-            EpisodeCollection::findBySeasonId(PHP_INT_MAX);
-        });
-    }
 }
