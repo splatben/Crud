@@ -41,7 +41,7 @@ class Season
         return $this;
     }
 
-    public function __construct()
+    private function __construct()
     {
 
     }
@@ -135,6 +135,15 @@ SQL);
             'tvshowid' => $this->tvShowId,
             'seasonNumber' => $this->seasonNumber]);
         $this->setId((int) MyPdo::getInstance()->lastInsertId());
+        return $this;
+    }
+    public function save(): Season
+    {
+        if ($this->id === null) {
+            $this->insert();
+        } else {
+            $this->update();
+        }
         return $this;
     }
 
