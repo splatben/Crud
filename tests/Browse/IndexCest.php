@@ -1,6 +1,6 @@
 <?php
 namespace Browse;
-use Tests\BrowseTester;
+use BrowseTester;
 
 class IndexCest
 {
