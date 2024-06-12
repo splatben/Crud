@@ -13,6 +13,7 @@ body {
 .footer,.header,.content,.menu{
     text-align: center;
     background: #CACACA;
+    border: 2px solid #585858;
 }
 .content{
     display: flex;
@@ -29,15 +30,19 @@ body {
 }
 
 .menu{
+    padding : 5px 0;
+    margin-bottom: 0;
     display:flex;
     flex-flow: row nowrap;
     justify-content : center;
 }
-
+button{
+    margin : 0 4px;
+}
 .button:hover {
     border: 2px solid rgb(100, 100, 100);
-
-}form {
+}
+form {
      align-self: center;
      display: flex;
      flex-direction: column;
