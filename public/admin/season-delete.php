@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 use Entity\Exception\EntityNotFoundException;
-use Entity\Tvshow;
+use Entity\Season;
 use Exception\ParameterException;
 
 try {
     $seas = null;
     if (!empty($_GET['seasonId']) && ctype_digit($_GET['seasonId'])) {
-        $seas = Tvshow::findById((int) $_GET['seasonId']);
+        $seas = Season::findById((int) $_GET['seasonId']);
     } else {
         throw new ParameterException();
     }
