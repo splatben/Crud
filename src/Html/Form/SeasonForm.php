@@ -18,7 +18,7 @@ class SeasonForm
      * @param Tvshow|null $tvshow
      * @param Season|null $season
      */
-    public function __construct(?Tvshow $tvshow, ?Season $season = null)
+    public function __construct(?Tvshow $tvshow = null, ?Season $season = null)
     {
         $this->tvshow = $tvshow;
         $this->season = $season;
@@ -39,7 +39,7 @@ class SeasonForm
     </label>
         <input type="hidden" name="tvShowId" required value="{$this->tvshow->getId()}"> 
     <label> Numero de saison 
-        <input type="text" name="seasonNumer" required value="{$this->season?->getSeasonNumber()}">
+        <input type="number" name="seasonNumber"  pattern="[0-9]" required value="{$this->season?->getSeasonNumber()}">
     </label> 
     <button type="submit">Enregister</button>
 </form>
@@ -60,16 +60,19 @@ HTML;
         $tvShowId = null;
         if (!empty($_POST['tvShowId']) && ctype_digit($_POST['tvShowId'])) {
             $tvShowId = (int) $_POST['tvShowId'];
+        } else {
+            throw new ParameterException();
         }
-        $seasonNumer = null;
-        if (!empty($_POST['seasonNumer']) && ctype_digit($_POST['seasonNumer'])) {
-            $seasonNumer = (int) $_POST['seasonNumer'];
+        $seasonNumber = null;
+        if (!empty($_POST['seasonNumber']) && ctype_digit($_POST['seasonNumber'])) {
+            $seasonNumber = (int) $_POST['seasonNumber'];
+        } else {
+            throw new ParameterException();
         }
         $id = null;
         if (!empty($_POST['id']) && ctype_digit($_POST['id'])) {
             $id = (int) $_POST['id'];
         }
-
-        $this->season = Season::create($name, $tvShowId, $seasonNumer, $id);
+        $this->season = Season::create($name, $tvShowId, $seasonNumber, $id);
     }
 }
