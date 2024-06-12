@@ -14,6 +14,7 @@ try {
     } else {
         header('content-Type: image/jpeg');
         echo readfile('img/default.png');
+        exit;
     }
 
     $poster = Poster::findById($posterId);
