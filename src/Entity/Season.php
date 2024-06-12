@@ -9,7 +9,7 @@ use PDO;
 
 class Season
 {
-    private int $id;
+    private ?int $id;
 
     private int $tvShowId;
 
@@ -17,7 +17,7 @@ class Season
     private int $seasonNumber;
     private ?int $posterId;
 
-    public function setId(int $id): Season
+    public function setId(?int $id): Season
     {
         $this->id = $id;
         return $this;
@@ -109,8 +109,9 @@ SQL);
 
     public static function create(string $name, int $tvShowId, int $seasonNumber, ?int $id = null):self
     {
-        $this = new Season();
-
+        $seas = new Season();
+        $seas->setName($name)->setTvShowId($tvShowId)->setSeasonNumber($seasonNumber)->setId($id);
+        return $seas;
     }
 
 
