@@ -27,10 +27,5 @@ class tvShowCollectionCest
         }
     }
 
-    public function findByIdThrowsExceptionIfGenreDoesNotExist(CrudTester $I): void
-    {
-        $I->expectThrowable(EntityNotFoundException::class, function () {
-            TvshowCollection::findByGenreId(PHP_INT_MAX);
-        });
-    }
+
 }

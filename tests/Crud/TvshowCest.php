@@ -102,6 +102,7 @@ class TvshowCest
             'overview' => 'OV test'
         ]);
         $I->assertSame(83, $show->getId());
+        $show->delete();
     }
 
 }
