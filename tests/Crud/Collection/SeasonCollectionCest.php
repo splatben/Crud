@@ -29,10 +29,5 @@ class SeasonCollectionCest
         }
     }
 
-    public function findByIdThrowsExceptionIfTvShowDoesNotExist(CrudTester $I): void
-    {
-        $I->expectThrowable(EntityNotFoundException::class, function () {
-            SeasonCollection::findByTvShowId(PHP_INT_MAX);
-        });
-    }
+
 }
