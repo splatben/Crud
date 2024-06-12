@@ -21,7 +21,7 @@ class AppWebPage extends WebPage
     public function __construct(string $title = "")
     {
         parent::__construct($title);
-        parent::appendCssUrl("http://localhost:8000/style/style1.css");
+        parent::appendCssUrl("/style/style1.css");
     }
     public function toHtml(): string
     {
@@ -39,7 +39,7 @@ class AppWebPage extends WebPage
             <h1>{$this->getTitle()}</h1>
         </div>
         <div class = "menu">
-            <button onclick="window.location.href = 'http://localhost:8000/index.php';"> Index </button>
+            <button onclick="window.location.href = '/index.php';"> Index </button>
             {$this->menu}
         </div>
         <div class = "content" >
