@@ -17,6 +17,11 @@ class Season
     private int $seasonNumber;
     private ?int $posterId;
 
+    private function __construct()
+    {
+
+    }
+
     public function getId(): int
     {
         return $this->id;
@@ -63,4 +68,20 @@ class Season
     {
         return EpisodeCollection::findBySeasonId($this->id);
     }
+
+    public function update():self
+    {
+        $req = MyPdo::getInstance()->prepare(<<<SQL
+        UPDATE season 
+        Set tvshowid = :tvshowid,
+             name = :Name,
+            seasonnumber = :seasonNumber
+        WHERE id = :id
+SQL);
+        $req->execute([':tvshowid'=>$this->tvShowId,
+            ':name'=>$this->name,
+            ':seasonNumber'=>$this->seasonNumber]);
+        return $this;
+    }
+
 }
