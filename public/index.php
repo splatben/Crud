@@ -45,7 +45,16 @@ try {
         }
     }
     $webPage->appendToMenu("</select></form>");
-    $webPage->appendCss("form {width : 150px;row-gap:0;}");
+    $webPage->appendCss(<<<CSS
+    form {
+    width : 150px;
+    row-gap:0;
+    margin: 0 2px; 
+    padding : 0;
+    background : none;
+    border-radius : 0;}
+    CSS
+    );
     $webPage->appendCssUrl("style/index.css");
     $webPage->appendContent(
         <<<HTML
