@@ -49,7 +49,7 @@ try {
     form {
     width : 150px;
     row-gap:0;
-    margin: 0; 
+    margin: 0 2px; 
     padding : 0;
     background : none;
     border-radius : 0;}
