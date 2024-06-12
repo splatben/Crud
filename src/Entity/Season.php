@@ -125,5 +125,17 @@ SQL);
         return $this;
     }
 
+    protected function insert(): Season
+    {
+        $insert = MyPdo::getInstance()->prepare(<<<SQL
+        INSERT INTO tvshow (tvshowid,name,seasonNumber)
+        VALUES (:tvshowid,:name,:seasonNumber)
+SQL);
+        $insert->execute(['name' => $this->name,
+            'tvshowid' => $this->tvShowId,
+            'seasonNumber' => $this->seasonNumber]);
+        $this->setId((int) MyPdo::getInstance()->lastInsertId());
+        return $this;
+    }
 
 }
