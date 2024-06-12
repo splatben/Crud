@@ -19,6 +19,7 @@ try {
 
     $show = Tvshow::findById($tvshowId);
     $webPage = new AppWebPage();
+    $webPage->appendButtonToMenu("admin/season-form.php", "Ajouter une Saison");
     $webPage->appendButtonToMenu("admin/tvshow-form.php?tvshowId={$show->getId()}", "Modifier");
     $webPage->appendButtonToMenu("admin/tvshow-delete.php?tvshowId={$show->getId()}", "Supprimer");
 
