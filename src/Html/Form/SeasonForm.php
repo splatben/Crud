@@ -3,6 +3,7 @@
 namespace Html\Form;
 
 use Entity\Season;
+use Entity\Tvshow;
 use Exception\ParameterException;
 use Html\StringEscaper;
 
@@ -10,11 +11,16 @@ class SeasonForm
 {
     use StringEscaper;
     private ?Season $season;
+
+    private ?Tvshow $tvshow;
+
     /**
+     * @param Tvshow|null $tvshow
      * @param Season|null $season
      */
-    public function __construct(?Season $season = null)
+    public function __construct(?Tvshow $tvshow, ?Season $season = null)
     {
+        $this->tvshow = $tvshow;
         $this->season = $season;
     }
 
@@ -31,10 +37,8 @@ class SeasonForm
     <label> Nom
         <input type="text" name="name" required value="{$this->escapeString($this->season?->getName())}">
     </label>
-    <label> Nom de base
-        <input type="text" name="tvShowId" required value="{$this->season?->getTvShowId()}">
-    </label> 
-    <label> Page d'accueil
+        <input type="hidden" name="tvShowId" required value="{$this->tvshow->getId()}"> 
+    <label> Numero de saison ?
         <input type="text" name="seasonNumer" required value="{$this->season?->getSeasonNumber()}">
     </label> 
     <button type="submit">Enregister</button>
