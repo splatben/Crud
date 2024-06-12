@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Crud;
 
 use Entity\Exception\EntityNotFoundException;
 use Entity\Genre;

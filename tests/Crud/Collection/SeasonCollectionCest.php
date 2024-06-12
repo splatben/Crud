@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Collection;
+namespace Crud\Collection;
 
 use Entity\Collection\SeasonCollection;
 use Entity\Exception\EntityNotFoundException;
@@ -10,7 +10,7 @@ use Tests\CrudTester;
 
 class SeasonCollectionCest
 {
-    public function findByTvShowId(CrudTester $I)
+    public function findByTvShowId(CrudTester $I): void
     {
         $expectedSeasons = [
             ['id' => 418,'tvshowid' => 57,'name' => 'Saison 1','seasonnumber' => 1,'posterid' => 467],

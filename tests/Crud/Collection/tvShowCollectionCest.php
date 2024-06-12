@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Collection;
+namespace Crud\Collection;
 
 use Entity\Collection\TvshowCollection;
 use Entity\Exception\EntityNotFoundException;
@@ -9,7 +9,7 @@ use Tests\CrudTester;
 
 class tvShowCollectionCest
 {
-    public function findByGenreId(CrudTester $I)
+    public function findByGenreId(CrudTester $I): void
     {
         $expectedTvShows = [
             ['id' => 25,'name' => 'Futurama','OriginalName' => 'Futurama','homepage' => 'http://www.comedycentral.com/shows/futurama','posterid' => 231],
