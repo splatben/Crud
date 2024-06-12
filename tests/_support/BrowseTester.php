@@ -1,6 +1,8 @@
 <?php
 
-use _generated\BrowseTesterActions;
+namespace Tests;
+
+use Tests\_generated\BrowseTesterActions;
 
 /**
  * Inherited Methods
