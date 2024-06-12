@@ -21,7 +21,9 @@ $tvShows = TvshowCollection::findAll();
 foreach ($tvShows as $show) {
     $webPage->appendContent(<<<HTML
     <div class="show">
+        <a href="tvshow.php?tvshowId={$show->getId()}">
         <img src="{$show->getPoster()}" alt="poster">
+        </a>
         <div class="show__info">
             <a class = "link" href="tvshow.php?tvshowId={$show->getId()}">
             <article class="show__name">{$webPage->escapeString($show->getName())}</article>
