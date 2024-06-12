@@ -1,5 +1,6 @@
 <?php
-namespace _support;
+
+use _generated\BrowseTesterActions;
 
 /**
  * Inherited Methods
@@ -18,7 +19,7 @@ namespace _support;
 */
 class BrowseTester extends \Codeception\Actor
 {
-    use _generated\BrowseTesterActions;
+    use BrowseTesterActions;
 
     /**
      * Define custom actions here
