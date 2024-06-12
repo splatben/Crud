@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 
 use Database\MyPdo;
+use Entity\Collection\GenreCollection;
 use Entity\Collection\TvshowCollection;
 use Entity\Exception\EntityNotFoundException;
 use Entity\Genre;
@@ -19,22 +20,20 @@ try {
     } else {
         $SortByGenre = false;
     }
+    $genre = null;
     $webPage = new AppWebPage();
     $webPage->appendButtonToMenu("admin/tvshow-form.php", "Ajouter");
     if ($SortByGenre) {
         $genre = Genre::findById($genreId);
         $webPage->setTitle("Séries TV du genre {$genre->getName()}");
-        if ($genreId > 1) {
-            $genreBefore = $genreId - 1;
-            $webPage->appendButtonToMenu("index.php?genreId=$genreBefore", "Genre précédent");
+        $webPage->appendToMenu(<<<HTML
+        <form method = 'GET' action='index.php'>
+            <select name="genreId" onchange=this.form.submit()>
+        HTML);
+        foreach(GenreCollection::findAll() as $genre) {
+            $webPage->appendToMenu("<option value=\"{$genre->getId()}\">{$genre->getName()}</option> ");
         }
-        $idMax = MyPdo::getInstance()->prepare("Select Max(id) from genre;");
-        $idMax->execute();
-        $idMax = $idMax->fetch(PDO::FETCH_NUM)[0];
-        if ($genreId < $idMax) {
-            $genreAfter = $genreId + 1;
-            $webPage->appendButtonToMenu("index.php?genreId=$genreAfter", "Genre Suivant");
-        }
+        $webPage->appendToMenu("</select></form>");
     } else {
         $webPage->setTitle("Série Tv");
         $webPage->appendButtonToMenu("index.php?genreId=1", "Index Par genre");

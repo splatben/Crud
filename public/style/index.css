@@ -60,6 +60,7 @@ a:visited {
     color: black;
 }
 
+
 @media (max-width : 450px){
     .show__info {
         row-gap: 10px;
