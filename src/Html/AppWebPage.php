@@ -8,6 +8,11 @@ class AppWebPage extends WebPage
 {
     private string $menu = "";
 
+    public function ToMenu(string $txt): void
+    {
+        $this->menu .= $txt;
+    }
+
     public function appendButtonToMenu(string $url, string $nom): void
     {
         $this->menu .= "<button onclick=\"window.location.href = '$url';\">$nom</button>\n";
