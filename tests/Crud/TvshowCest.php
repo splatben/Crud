@@ -28,9 +28,7 @@ class TvshowCest
     public function getPoster(CrudTester $I): void
     {
         $show = Tvshow::findById(3);
-        $poster = $show->getPoster();
-        $I->assertSame(15, $poster->getId());
-        $I->assertSame(file_get_contents(codecept_data_dir().'/Poster/posterTest.jpeg'), $poster->getJpeg());
+        $I->assertSame("http://localhost:8000/poster.php?posterId=15", $show->getPoster());
 
     }
 
