@@ -96,28 +96,28 @@ class Season
     {
         $req = MyPdo::getInstance()->prepare(<<<SQL
         UPDATE season 
-        Set tvshowid = :tvshowid,
-             name = :Name,
-            seasonnumber = :seasonNumber
+        Set name = :name
         WHERE id = :id
 SQL);
-        $req->execute([':tvshowid' => $this->tvShowId,
-            ':name' => $this->name,
-            ':seasonNumber' => $this->seasonNumber]);
+        $req->execute([':name' => $this->name, ':id' => $this->id]);
         return $this;
     }
 
     public static function create(string $name, int $tvShowId, int $seasonNumber, ?int $id = null): self
     {
         $seas = new Season();
-        $seas->setName($name)->setTvShowId($tvShowId)->setSeasonNumber($seasonNumber)->setId($id);
+        $seas->setName($name);
+        $seas->setTvShowId($tvShowId);
+        $seas->setSeasonNumber($seasonNumber);
+        $seas->setId($id);
+        $seas->posterId = null;
         return $seas;
     }
 
     public function delete(): Season
     {
         $del = MyPdo::getInstance()->prepare(<<<SQL
-        DELETE FROM tvshow
+        DELETE FROM season
         WHERE id = :Id
         SQL);
         $del->execute([':Id' => $this->id]);
@@ -128,12 +128,12 @@ SQL);
     protected function insert(): Season
     {
         $insert = MyPdo::getInstance()->prepare(<<<SQL
-        INSERT INTO tvshow (tvshowid,name,seasonNumber)
+        INSERT INTO season (tvshowid,name,seasonNumber)
         VALUES (:tvshowid,:name,:seasonNumber)
 SQL);
-        $insert->execute(['name' => $this->name,
-            'tvshowid' => $this->tvShowId,
-            'seasonNumber' => $this->seasonNumber]);
+        $insert->execute([':name' => $this->name,
+            ':tvshowid' => $this->tvShowId,
+            ':seasonNumber' => $this->seasonNumber]);
         $this->setId((int) MyPdo::getInstance()->lastInsertId());
         return $this;
     }
