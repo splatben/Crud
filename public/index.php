@@ -23,30 +23,34 @@ try {
     $genre = null;
     $webPage = new AppWebPage();
     $webPage->appendButtonToMenu("admin/tvshow-form.php", "Ajouter");
+    $webPage->appendToMenu(<<<HTML
+        <form method = 'GET' action='index.php'>
+            <select name="genreId" onchange=this.form.submit()>
+        HTML);
     if ($SortByGenre) {
         $genre = Genre::findById($genreId);
         $webPage->setTitle("Séries TV du genre {$genre->getName()}");
         $webPage->appendToMenu(<<<HTML
-        <form method = 'GET' action='index.php'>
-            <select name="genreId" onchange=this.form.submit()>
             <option value=\"{$genre->getId()}\">{$genre->getName()}</option>
+            <option value=\"0\">Index</option>
         HTML);
-        foreach(GenreCollection::findAll() as $genr) {
-            if ($genr->getId() != $genre->getId()) {
-                $webPage->appendToMenu("<option value=\"{$genr->getId()}\">{$genr->getName()}</option> ");
-            }
-        }
-        $webPage->appendToMenu("</select></form>");
-        $webPage->appendCss("form {width : 150px;row-gap:0;}");
     } else {
         $webPage->setTitle("Série Tv");
-        $webPage->appendButtonToMenu("index.php?genreId=1", "Index Par genre");
+        $webPage->appendToMenu(<<<HTML
+            <option value=\"0\">Index</option>
+        HTML);
     }
+    foreach(GenreCollection::findAll() as $genr) {
+        if ($genr->getId() != $genreId) {
+            $webPage->appendToMenu("<option value=\"{$genr->getId()}\">{$genr->getName()}</option> ");
+        }
+    }
+    $webPage->appendToMenu("</select></form>");
+    $webPage->appendCss("form {width : 150px;row-gap:0;}");
     $webPage->appendCssUrl("style/index.css");
     $webPage->appendContent(
         <<<HTML
     <div class="list__show">
-    
     HTML
     );
     $tvShows = null;
