@@ -17,11 +17,34 @@ class Season
     private int $seasonNumber;
     private ?int $posterId;
 
-    private function __construct()
+    public function setId(int $id): Season
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    public function setTvShowId(int $tvShowId): Season
+    {
+        $this->tvShowId = $tvShowId;
+        return $this;
+    }
+
+    public function setName(string $name): Season
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    public function setSeasonNumber(int $seasonNumber): Season
+    {
+        $this->seasonNumber = $seasonNumber;
+        return $this;
+    }
+
+    public function __construct()
     {
 
     }
-
     public function getId(): int
     {
         return $this->id;
@@ -83,5 +106,12 @@ SQL);
             ':seasonNumber'=>$this->seasonNumber]);
         return $this;
     }
+
+    public static function create(string $name, int $tvShowId, int $seasonNumber, ?int $id = null):self
+    {
+        $this = new Season();
+
+    }
+
 
 }
