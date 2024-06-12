@@ -32,7 +32,6 @@ try {
         $webPage->setTitle("Séries TV du genre {$genre->getName()}");
         $webPage->appendToMenu(<<<HTML
             <option value=\"{$genre->getId()}\">{$genre->getName()}</option>
-            <option value=\"0\">Index</option>
         HTML);
     } else {
         $webPage->setTitle("Série Tv");
