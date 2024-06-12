@@ -1,14 +1,13 @@
 html,body {
     margin : 0;
     height: 100%;
-    background: #a6a6a6;
+    background: white;
 
 }
 body{
     display : flex;
     flex-flow: column nowrap;
-    margin-right: auto;
-    margin-left:auto;
+    background : #A3A3A3;
 }
 
 .content{
@@ -17,21 +16,29 @@ body{
     height : 80%;
     overflow: scroll;
     scrollbar-width: auto;
+    justify-content: center;
+    padding-top: 20px;
 }
 
 .footer,.header,.content,.menu{
-    border : 2px solid rgb(222,222,222);
-    margin : 8px;
     text-align: center;
-    background: white;
+    background: #CACACA;
 }
-
+.content,.menu {
+    width : 90%;
+    margin: 8px auto;
+    background: #F0F0F0;
+}
 form {
     align-self: center;
     display: flex;
     flex-direction: column;
     width: 280px;
     row-gap: 10px;
+    background : #C5C6C6;
+    margin : 20px;
+    padding: 20px;
+    border-radius : 20px;
 }
 
 form label {
@@ -40,9 +47,7 @@ form label {
     justify-content: space-between;
     text-align: start;
 }
-.footer,.menu{
-    margin-top : 0;
-}
+
 .menu{
     margin-bottom:0;
     display:flex;
@@ -61,18 +66,22 @@ img {
     h1{
         font-size: 20px;
     }
-    .footer,.header,.content,.menu{
-        margin : 4px;
+    .content,.menu{
+        margin : 4px auto;
     }
     .footer,.menu{
-        margin-top : 0;
-    }
-    .menu{
         margin-bottom:0;
     }
     .content{
         font-size: 12px;
     }
+    .content,.menu {
+        width: 100%;
+    }
 }
-
+@media (min-width : 1000px){
+    .content,.menu {
+        width: 70%;
+    }
+}
 
