@@ -32,10 +32,10 @@ class SeasonForm
         <input type="text" name="name" required value="{$this->escapeString($this->season?->getName())}">
     </label>
     <label> Nom de base
-        <input type="text" name="tvShowId" required value="{$this->season?->getOriginalName()}">
+        <input type="text" name="tvShowId" required value="{$this->season?->getTvShowId()}">
     </label> 
     <label> Page d'accueil
-        <input type="text" name="seasonNumer" required value="{$this->season?->getHomepage()}">
+        <input type="text" name="seasonNumer" required value="{$this->season?->getSeasonNumber()}">
     </label> 
     <button type="submit">Enregister</button>
 </form>
