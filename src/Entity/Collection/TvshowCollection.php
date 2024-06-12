@@ -33,10 +33,8 @@ SQL);
         SQL
         );
         $req->execute([$id]);
-        if (empty($tv_show = $req->fetchAll(PDO::FETCH_CLASS, Tvshow::class))) {
-            throw new EntityNotFoundException();
-        } else {
-            return $tv_show;
-        }
+        return $req->fetchAll(PDO::FETCH_CLASS, Tvshow::class);
+
+
     }
 }
