@@ -49,7 +49,11 @@
         "test:crud": [
             "php vendor/bin/codecept run Crud"
         ],
+        "test:browse": [
+            "php vendor/bin/codecept run Browse"
+        ],
         "test:codecept": [
+            "php vendor/bin/codecept clean",
             "php vendor/bin/codecept run"
         ],
         "test": [
