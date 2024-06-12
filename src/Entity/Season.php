@@ -92,7 +92,7 @@ class Season
         return EpisodeCollection::findBySeasonId($this->id);
     }
 
-    public function update():self
+    public function update(): self
     {
         $req = MyPdo::getInstance()->prepare(<<<SQL
         UPDATE season 
@@ -101,17 +101,28 @@ class Season
             seasonnumber = :seasonNumber
         WHERE id = :id
 SQL);
-        $req->execute([':tvshowid'=>$this->tvShowId,
-            ':name'=>$this->name,
-            ':seasonNumber'=>$this->seasonNumber]);
+        $req->execute([':tvshowid' => $this->tvShowId,
+            ':name' => $this->name,
+            ':seasonNumber' => $this->seasonNumber]);
         return $this;
     }
 
-    public static function create(string $name, int $tvShowId, int $seasonNumber, ?int $id = null):self
+    public static function create(string $name, int $tvShowId, int $seasonNumber, ?int $id = null): self
     {
         $seas = new Season();
         $seas->setName($name)->setTvShowId($tvShowId)->setSeasonNumber($seasonNumber)->setId($id);
         return $seas;
+    }
+
+    public function delete(): Season
+    {
+        $del = MyPdo::getInstance()->prepare(<<<SQL
+        DELETE FROM tvshow
+        WHERE id = :Id
+        SQL);
+        $del->execute([':Id' => $this->id]);
+        $this->setId(null);
+        return $this;
     }
 
 
