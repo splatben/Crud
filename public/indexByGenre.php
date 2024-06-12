@@ -24,14 +24,14 @@ try {
     $webPage->appendCssUrl("style/index.css");
     if ($genreId > 1) {
         $genreBefore = $genreId - 1;
-        $webPage->appendButtonToMenu("indexParGenre.php?genreId=$genreBefore", "Genre précédent");
+        $webPage->appendButtonToMenu("indexByGenre.php?genreId=$genreBefore", "Genre précédent");
     }
     $idMax = MyPdo::getInstance()->prepare("Select Max(id) from genre;");
     $idMax->execute();
     $idMax = $idMax->fetch(PDO::FETCH_NUM)[0];
     if ($genreId < $idMax) {
         $genreAfter = $genreId + 1;
-        $webPage->appendButtonToMenu("indexParGenre.php?genreId=$genreAfter", "Genre Suivant");
+        $webPage->appendButtonToMenu("indexByGenre.php?genreId=$genreAfter", "Genre Suivant");
     }
     $webPage->appendContent(
         <<<HTML
