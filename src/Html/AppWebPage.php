@@ -8,7 +8,7 @@ class AppWebPage extends WebPage
 {
     private string $menu = "";
 
-    public function ToMenu(string $txt): void
+    public function appendToMenu(string $txt): void
     {
         $this->menu .= $txt;
     }
