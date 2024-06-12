@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Crud;
 
 use Entity\Exception\EntityNotFoundException;
 use Entity\Season;
@@ -28,8 +28,8 @@ class SeasonCest
     public function getPoster(CrudTester $I): void
     {
         $show = Season::findById(13);
-        $poster = $show->getPoster();
-        $I->assertSame(16, $poster->getId());
+
+        $I->assertSame("http://localhost:8000/poster.php?posterId=16", $show->getPoster());
     }
 
 }

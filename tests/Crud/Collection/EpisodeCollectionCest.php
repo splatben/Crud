@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Collection;
+namespace Crud\Collection;
 
 use Entity\Collection\EpisodeCollection;
 use Entity\Episode;
@@ -9,7 +9,7 @@ use Tests\CrudTester;
 
 class EpisodeCollectionCest
 {
-    public function findBySeasonId(CrudTester $I)
+    public function findBySeasonId(CrudTester $I): void
     {
         $expectedEps = [
             ['id' => 3869,'seasonId' => 208,'name' => 'La Grande Aventure de Bender','episodeNumber' => 1],
