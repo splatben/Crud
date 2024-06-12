@@ -2,7 +2,7 @@
     "name": "splat-ben/sae2-01",
     "description": "Développement d'une application Web",
     "type": "project",
-    "license": "Copyleft",
+    "license": "proprietary",
     "autoload": {
         "psr-4": {
             "": "src/"
