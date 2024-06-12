@@ -137,6 +137,7 @@ SQL);
         $this->setId((int) MyPdo::getInstance()->lastInsertId());
         return $this;
     }
+
     public function save(): Season
     {
         if ($this->id === null) {
