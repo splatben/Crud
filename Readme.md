@@ -2,7 +2,6 @@
 #### Par Raphael Gomes et Benoit Collot
   
 ## Important
-### Clonage du Git avec la commande : ```git clone https://iut-info.univ-reims.fr/gitlab/coll0261/php-crud-tv-show.git```
 
 ### Windows
 
